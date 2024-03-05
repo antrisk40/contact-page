@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Input } from "./ui/Input";
-import { TextArea } from "./ui/TextArea";
-import { Button } from "./ui/btn";
+import { Input } from "./ui/input.jsx";
+import { TextArea } from "./ui/textarea.jsx";
+import { Button } from "./ui/btn.jsx";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({

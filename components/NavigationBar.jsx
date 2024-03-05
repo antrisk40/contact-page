@@ -1,5 +1,5 @@
 import React from "react";
-import { ModeToggle } from "./ui/toggle-mode";
+import { ModeToggle } from "./ui/toggle-mode.jsx";
 
 const NavigationBar = () => {
   return (
