@@ -32,7 +32,7 @@ const ContactForm = () => {
       const data = new FormData(formElement); // Create FormData object from the form element
 
       fetch(
-        "https://script.google.com/macros/s/AKfycbxI3PKb5FRx-VRPdorASYexijtZGbobuLRKNAUGwCvVC9EPCuFYpHH5oSX7v612ABxR/exec",
+        "https://script.google.com/macros/s/AKfycbxu2P-FD6XwjxBbcv6YBxm0ob8BgDqsh2M0FXYzMUapkXS8QDDixEj8arVsUfvTjws7uw/exec",
         {
           method: "POST",
           body: data,
