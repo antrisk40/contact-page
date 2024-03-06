@@ -14,6 +14,9 @@ To run the project locally:
 - Use `npm run dev` to start the development server.
 - Open [http://localhost:3000](http://localhost:3000) in your browser.
 
+## Google Spread Sheet which is connected to webiste
+- (https://docs.google.com/spreadsheets/d/14yxV9VjbtK2kECsY8sXxLOBDFSejlI8VNY-HUq8CQE4/edit#gid=0)
+
 ## Google Sheets Integration
 
 The project uses Google Apps Script to connect with a Google Sheets spreadsheet. The spreadsheet is accessible [here](https://docs.google.com/spreadsheets/d/14yxV9VjbtK2kECsY8sXxLOBDFSejlI8VNY-HUq8CQE4/edit#gid=0), containing columns for name, email, phone, and message.
