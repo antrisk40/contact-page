@@ -1,40 +1,42 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Next.js Project with Google Sheets Integration
 
-## Getting Started
+This project integrates with a Google Sheets document to store form submissions. The form collects data including name, email, phone, and message from users and saves it to a Google Sheets spreadsheet.
 
-First, run the development server:
+## Setup Instructions
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+To set up this project:
+1. Clone the repository to your local device.
+2. Run `npm install` to install all dependencies.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Running the Project Locally
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+To run the project locally:
+- Use `npm run dev` to start the development server.
+- Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## Google Sheets Integration
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+The project uses Google Apps Script to connect with a Google Sheets spreadsheet. The spreadsheet is accessible [here](https://docs.google.com/spreadsheets/d/14yxV9VjbtK2kECsY8sXxLOBDFSejlI8VNY-HUq8CQE4/edit#gid=0), containing columns for name, email, phone, and message.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```javascript
+function doPost(e){
+  try {
+    const sheets = SpreadsheetApp.openByUrl("https://docs.google.com/spreadsheets/d/14yxV9VjbtK2kECsY8sXxLOBDFSejlI8VNY-HUq8CQE4/edit?usp=sharing");
+    const sheet = sheets.getSheetByName("ContactUs");
+    
+    let data = e.parameter;
+    sheet.appendRow([data.name, data.email, data.phone, data.message]);
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+    // Return a JSON response indicating success
+    return ContentService.createTextOutput(JSON.stringify({
+      success: true,
+      message: "Your message was successfully sent to the Google Sheet database!"
+    })).setMimeType(ContentService.MimeType.JSON);
+  } catch (error) {
+    // Return a JSON response indicating error
+    return ContentService.createTextOutput(JSON.stringify({
+      success: false,
+      message: "An error occurred while processing your request."
+    })).setMimeType(ContentService.MimeType.JSON);
+  }
+}
